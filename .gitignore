@@ -77,3 +77,4 @@ traces/
 build
 dist/
 docs/
+reports/junit.xml

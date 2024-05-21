@@ -14,7 +14,9 @@
             "ts-node/register"
         ],
         "format": [
-            ["json","reports/cucumber_report.json"]
+            ["json","reports/cucumber_report.json"],
+            ["junit","reports/junit.xml"],
+            ["html","reports/hrml-formatter.html"]
         ]    
     }
 }
