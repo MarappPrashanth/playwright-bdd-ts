@@ -62,10 +62,10 @@ Before(async function (scenario) {
 });
 
 After(async function (scenario) {
-  this.log(`--------${scenario.pickle.name} is ended--------`);
-  this.log(`SCENARIO STATUS IS >>>>>> ${scenario.result?.status} -------`);
+  this.attach(`--------${scenario.pickle.name} is ended--------`);
+  this.attach(`SCENARIO STATUS IS >>>>>> ${scenario.result?.status} -------`);
   if (scenario.result?.status == Status.FAILED) {
-    this.log(`say cheese for snapshot!!!!`);
+    this.attach(`say cheese for snapshot!!!!`);
     const img = await page.screenshot({
       path: `./reports/${scenario.pickle.name}.png`,
     });
@@ -77,11 +77,11 @@ After(async function (scenario) {
 });
 
 BeforeStep(async function (scenario) {
-  this.log(`--------${scenario.pickleStep.text} is started--------`);
+  this.attach(`--------${scenario.pickleStep.text} is started--------`);
 });
 
 AfterStep(async function (scenario) {
-  this.log(`--------${scenario.pickleStep.text} is ended--------`);
+  this.attach(`--------${scenario.pickleStep.text} is ended--------`);
 });
 
 AfterAll(async function () {});

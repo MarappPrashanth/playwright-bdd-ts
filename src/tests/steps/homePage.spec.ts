@@ -8,7 +8,7 @@ let loginPage: LoginPage;
 let homePage: HomePage;
 
 Then("I should see the expected outcome1", async function () {
-  homePage = new HomePage(getPage(),this.log);  
+  homePage = new HomePage(getPage(),this.attach);  
   this.log("I should see the expected outcome");
     console.log(`hello ${this.parameters.a}`)
   });

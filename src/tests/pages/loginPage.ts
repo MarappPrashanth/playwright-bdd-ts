@@ -1,11 +1,11 @@
 import { Page } from "playwright";
 import * as LoginPageLocators from "../locators/loginPageLocators.json";
 import basePage from "./basePage";
-import { ICreateLog } from "@cucumber/cucumber/lib/runtime/attachment_manager";
+import { ICreateLog,ICreateAttachment } from "@cucumber/cucumber/lib/runtime/attachment_manager";
 
 export default class loginPage extends basePage {
-  constructor(page: Page,log:ICreateLog) {
-    super(page,log);
+  constructor(page: Page,loggerAttachment:ICreateAttachment) {
+    super(page,loggerAttachment);
   }
 
   async goToPage() {

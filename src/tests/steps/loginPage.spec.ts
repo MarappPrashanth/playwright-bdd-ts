@@ -6,7 +6,7 @@ import LoginPage from "../pages/loginPage";
 let loginPage: LoginPage;
 
 Given("I have a precondition", async function () {
-  loginPage = new LoginPage(getPage(),this.log);
+  loginPage = new LoginPage(getPage(),this.attach);
   await loginPage.goToPage();
   //expect
   this.log("I have a precondition");
@@ -15,7 +15,7 @@ Given("I have a precondition", async function () {
 });
 
 When("I perform an action", async function () {
-  loginPage = new LoginPage(getPage(),this.log);
+  loginPage = new LoginPage(getPage(),this.attach);
   await loginPage.loginUsername();
   this.log("I perform an action steps logs");
 });
