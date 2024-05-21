@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cucumber-js test",
-    "sample":"cucumber-js --env=dev",
-    "format": "prettier --write \"**/*.{ts,tsx,css,html}\" "
+    "sample":"cucumber-js --env=dev"
   },
   "keywords": [
     "PM",
