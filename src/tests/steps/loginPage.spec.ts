@@ -1,6 +1,6 @@
 import { Given, When, Then } from "@cucumber/cucumber";
 import { test, expect } from "@playwright/test";
-import { getPage } from "../../corelib/corelib.spec";
+import { getPage } from "../../helper/Hooks/cucumberHooks.spec";
 import LoginPage from "../pages/loginPage";
 
 let loginPage: LoginPage;

@@ -1,10 +1,12 @@
 {
   "name": "shine",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Playwright Automation Framework with BDD",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test"
+    "test": "cucumber-js test",
+    "sample":"cucumber-js --env=dev",
+    "format": "prettier --write \"**/*.{ts,tsx,css,html}\" "
   },
   "keywords": [
     "PM",
