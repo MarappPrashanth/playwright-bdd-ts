@@ -1,4 +1,4 @@
-import basePage from "../pages/basePage";
+import basePage from "./basePage";
 import { Page } from "playwright";
 
 
