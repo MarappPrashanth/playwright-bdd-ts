@@ -13,6 +13,8 @@
         "requireModule": [
             "ts-node/register"
         ],
-        "format": ["json","reports/cucumber_report.json"]
+        "format": [
+            ["json","reports/cucumber_report.json"]
+        ]    
     }
 }
