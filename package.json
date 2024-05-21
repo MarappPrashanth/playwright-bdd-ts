@@ -4,7 +4,7 @@
   "description": "Playwright Automation Framework with BDD",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js test",
+    "test": "cucumber-js test & npx ts-node index.ts",
     "sample":"cucumber-js --env=dev"
   },
   "keywords": [

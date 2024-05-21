@@ -4,6 +4,9 @@ import {
   setDefaultTimeout,
   BeforeAll,
   AfterAll,
+  AfterStep,
+  BeforeStep,
+  Status,
 } from "@cucumber/cucumber";
 
 import {
@@ -33,7 +36,6 @@ let browser: Browser;
 let bCtx: BrowserContext;
 let page: Page;
 
-
 BeforeAll(async function () {
   loadEnv();
   switch (process.env.BROWSER) {
@@ -51,17 +53,35 @@ BeforeAll(async function () {
   }
 });
 
-Before(async function () {
+Before(async function (scenario) {
   // bCtx = await browser.newContext({ viewport: null, javaScriptEnabled: true });
+  scenario;
   bCtx = await browser.newContext(browserContextOptions);
   page = await bCtx.newPage();
   await page.goto(process.env.BASE_URL as string);
 });
 
-After(async function () {
+After(async function (scenario) {
+  this.log(`--------${scenario.pickle.name} is ended--------`);
+  this.log(`SCENARIO STATUS IS >>>>>> ${scenario.result?.status} -------`);
+  if (scenario.result?.status == Status.FAILED) {
+    this.log(`say cheese for snapshot!!!!`);
+    const img = await page.screenshot({
+      path: `./reports/${scenario.pickle.name}.png`,
+    });
+    this.attach(img, "image/png");
+  }
   await page.close();
   await bCtx.close();
   await browser.close();
+});
+
+BeforeStep(async function (scenario) {
+  this.log(`--------${scenario.pickleStep.text} is started--------`);
+});
+
+AfterStep(async function (scenario) {
+  this.log(`--------${scenario.pickleStep.text} is ended--------`);
 });
 
 AfterAll(async function () {});

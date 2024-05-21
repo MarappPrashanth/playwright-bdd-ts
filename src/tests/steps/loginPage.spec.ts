@@ -6,18 +6,21 @@ import LoginPage from "../pages/loginPage";
 let loginPage: LoginPage;
 
 Given("I have a precondition", async function () {
-  loginPage = new LoginPage(getPage());
+  loginPage = new LoginPage(getPage(),this.log);
   await loginPage.goToPage();
   //expect
-  console.log("I have a precondition");
+  this.log("I have a precondition");
+  this.parameters.a=10;
+  
 });
 
 When("I perform an action", async function () {
-  loginPage = new LoginPage(getPage());
+  loginPage = new LoginPage(getPage(),this.log);
   await loginPage.loginUsername();
-  console.log("I perform an action");
+  this.log("I perform an action steps logs");
 });
 
 Then("I should see the expected outcome", async function () {
-  console.log("I should see the expected outcome");
+  this.log("I should see the expected outcome");
+  console.log(`hello ${this.parameters.a}`)
 });

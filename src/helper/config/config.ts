@@ -10,7 +10,7 @@ export const firefoxBrowserOptions: LaunchOptions = {
 };
 
 export const chromeBrowserOptions: LaunchOptions = {
-  slowMo: 500,
+  slowMo: 1500,
   headless: process.env.HEADLESS === "false",
   devtools: false,
   channel: "chrome",

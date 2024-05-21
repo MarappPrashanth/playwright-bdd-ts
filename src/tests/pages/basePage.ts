@@ -1,14 +1,17 @@
 import { Page } from "playwright";
+import { ICreateLog } from "@cucumber/cucumber/lib/runtime/attachment_manager";
 
 export default class basePage {
   protected page: Page;
-  constructor(page: Page) {
+  protected log:ICreateLog;
+  constructor(page: Page, log:ICreateLog) {
     this.page = page;
+    this.log=log;
   }
 
   async enter(object: any, data: string) {
     await this.getLocator(object).fill(data, object["actionOptions"]);
-    console.log(`entered value in ${this.getLocatorDescription(object)}`);
+    this.log(`entered value in ${this.getLocatorDescription(object)}`);
   }
 
   async click(object: any, roleFlag = false) {
@@ -17,14 +20,14 @@ export default class basePage {
     } else {
       await this.getLocatorByRole(object).click(object["actionOptions"]);
     }
-    console.log(`entered value in ${this.getLocatorDescription(object)}`);
+    this.log(`entered value in ${this.getLocatorDescription(object)}`);
   }
 
   async scroll() {}
 
   async clickByRole(object: any) {
     await this.getLocator(object).click(object["actionOptions"]);
-    console.log(`entered value in ${this.getLocatorDescription(object)}`);
+    this.log(`entered value in ${this.getLocatorDescription(object)}`);
   }
 
   //===============================================================================================
