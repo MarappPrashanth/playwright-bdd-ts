@@ -10,13 +10,9 @@ import {
   Browser,
   BrowserContext,
   Page,
-  ChromiumBrowser,
-  FirefoxBrowser,
-  webkit,
-  WebKitBrowser,
   chromium,
-  LaunchOptions,
   firefox,
+  webkit,
 } from "playwright";
 
 import {
@@ -33,38 +29,42 @@ let browser: Browser;
 let bCtx: BrowserContext;
 let page: Page;
 
-
 BeforeAll(async function () {
   loadEnv();
-  switch (process.env.BROWSER) {
+  const browserName = process.env.BROWSER ?? "chromium";
+  switch (browserName) {
+    case "chromium":
     case "chrome":
       browser = await chromium.launch(chromeBrowserOptions);
-      break;
-    case "edge":
-      browser = await chromium.launch(edgeBrowserOptions);
       break;
     case "firefox":
       browser = await firefox.launch(firefoxBrowserOptions);
       break;
+    case "webkit":
+      browser = await webkit.launch(edgeBrowserOptions);
+      break;
     default:
-      throw new Error(`invalid browser type ${[process.env.BROWSE]}`);
+      throw new Error(`invalid browser type ${browserName}`);
   }
 });
 
 Before(async function () {
-  // bCtx = await browser.newContext({ viewport: null, javaScriptEnabled: true });
   bCtx = await browser.newContext(browserContextOptions);
   page = await bCtx.newPage();
-  await page.goto(process.env.BASE_URL as string);
+  if (!process.env.BASE_URL) {
+    throw new Error("BASE_URL is not defined");
+  }
+  await page.goto(process.env.BASE_URL);
 });
 
 After(async function () {
   await page.close();
   await bCtx.close();
-  await browser.close();
 });
 
-AfterAll(async function () {});
+AfterAll(async function () {
+  await browser.close();
+});
 export function getPage(): Page {
   return page;
 }

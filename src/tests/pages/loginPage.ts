@@ -8,14 +8,10 @@ export default class loginPage extends basePage {
   }
 
   async goToPage() {
-   // 
-   await this.click(LoginPageLocators.btngetstarted, true);
-    //await this.enter(LoginPageLocators.loginlink,"hello");
-    //await this.click(LoginPageLocators.loginlink);
+    await this.click((LoginPageLocators as any).btngetstarted);
   }
 
   async loginUsername() {
-    
-    await this.click(LoginPageLocators.txtSearch);
+    await this.click((LoginPageLocators as any).txtSearch);
   }
 }

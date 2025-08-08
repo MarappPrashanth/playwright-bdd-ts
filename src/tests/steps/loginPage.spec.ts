@@ -1,5 +1,4 @@
 import { Given, When, Then } from "@cucumber/cucumber";
-import { test, expect } from "@playwright/test";
 import { getPage } from "../../helper/Hooks/cucumberHooks.spec";
 import LoginPage from "../pages/loginPage";
 
@@ -8,7 +7,6 @@ let loginPage: LoginPage;
 Given("I have a precondition", async function () {
   loginPage = new LoginPage(getPage());
   await loginPage.goToPage();
-  //expect
   console.log("I have a precondition");
 });
 
